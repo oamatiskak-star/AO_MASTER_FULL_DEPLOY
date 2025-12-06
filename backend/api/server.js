@@ -20,7 +20,7 @@ app.use("/api/ping", pingRoute);
 app.use("/api/calc", calcRoute);
 app.use("/api/projects", projectsRoute);
 app.use("/api/uploads", uploadsRoute);
-app.use("/api/module-upload", modulesRoute);
+app.use("/api/modules", modulesRoute);
 
 // 404 fallback
 app.use((req, res) => {
