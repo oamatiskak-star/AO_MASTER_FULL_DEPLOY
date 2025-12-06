@@ -8,6 +8,7 @@ import calcRoute from "./routes/calc.js";
 import projectsRoute from "./routes/projects.js";
 import uploadsRoute from "./routes/uploads.js";
 import modulesRoute from "./routes/modules.js";
+import moduleEngineRoute from "./routes/module-engine.js";
 
 // Utils
 import { errorHandler } from "../utils/errorHandler.js";
@@ -22,6 +23,7 @@ app.use("/api/calc", calcRoute);
 app.use("/api/projects", projectsRoute);
 app.use("/api/uploads", uploadsRoute);
 app.use("/api/modules", modulesRoute);
+app.use("/api/module-engine", moduleEngineRoute);
 
 // 404 fallback
 app.use((req, res) => {

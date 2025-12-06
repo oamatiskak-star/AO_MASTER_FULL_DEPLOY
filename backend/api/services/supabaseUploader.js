@@ -3,25 +3,23 @@ import fs from "fs";
 
 const supabase = createClient(
   process.env.SUPABASE_URL,
-  process.env.SUPABASE_KEY
+  process.env.SUPABASE_ANON_KEY
 );
 
-export default async function uploadToSupabase(filePath, filename) {
-  console.log("Upload naar Supabase gestart:", filename);
+// upload bestand naar bucket ai_modules
+export async function uploadToSupabase(filePath, fileName) {
+  const bucket = "ai_modules";
 
-  const fileData = fs.readFileSync(filePath);
+  const fileBuffer = fs.readFileSync(filePath);
 
   const { data, error } = await supabase.storage
-    .from("modules")
-    .upload(filename, fileData, {
+    .from(bucket)
+    .upload(fileName, fileBuffer, {
       upsert: true,
       contentType: "application/zip"
     });
 
-  if (error) {
-    console.error("Supabase upload error:", error);
-    return;
-  }
+  if (error) throw error;
 
-  console.log("Upload naar Supabase voltooid:", data);
+  return data;
 }
