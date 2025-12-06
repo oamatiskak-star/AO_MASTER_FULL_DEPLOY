@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import "../api/services/moduleEngine.js";
 
 // Routes
 import pingRoute from "./routes/ping.js";
