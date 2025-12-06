@@ -1,7 +1,7 @@
 import express from "express";
 const router = express.Router();
 
-router.get("/", async (req, res) => {
+router.get("/", (req, res) => {
   res.json({ projects: [] });
 });
 
