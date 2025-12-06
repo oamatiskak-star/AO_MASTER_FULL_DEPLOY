@@ -3,11 +3,12 @@ import fs from "fs";
 import path from "path";
 
 const router = express.Router();
+const INCOMING = path.join(process.cwd(), "backend/modules_incoming");
 
-const INCOMING_DIR = path.join(process.cwd(), "backend/modules_incoming");
-if (!fs.existsSync(INCOMING_DIR)) fs.mkdirSync(INCOMING_DIR, { recursive: true });
+// maak map als hij niet bestaat
+if (!fs.existsSync(INCOMING)) fs.mkdirSync(INCOMING, { recursive: true });
 
-// POST /api/uploads
+// upload één bestand
 router.post("/", async (req, res) => {
   try {
     if (!req.files || !req.files.file) {
@@ -15,17 +16,32 @@ router.post("/", async (req, res) => {
     }
 
     const file = req.files.file;
-    const dest = path.join(INCOMING_DIR, file.name);
-
+    const dest = path.join(INCOMING, file.name);
     await file.mv(dest);
 
-    return res.json({
-      uploaded: true,
-      filename: file.name,
-      size: file.size
-    });
+    return res.json({ uploaded: true, filename: file.name, size: file.size });
   } catch (err) {
-    return res.status(500).json({ error: err.message });
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// bulk upload
+router.post("/bulk", async (req, res) => {
+  try {
+    if (!req.files) return res.status(400).json({ error: "Geen bestanden ontvangen" });
+
+    const items = Array.isArray(req.files.files) ? req.files.files : [req.files.files];
+    const uploaded = [];
+
+    for (const file of items) {
+      const dest = path.join(INCOMING, file.name);
+      await file.mv(dest);
+      uploaded.push(file.name);
+    }
+
+    return res.json({ uploaded: true, files: uploaded });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
 });
 
