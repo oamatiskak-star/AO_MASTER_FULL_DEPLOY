@@ -37,4 +37,10 @@ const PORT = 4000;
 import "./services/moduleEngine.js";
 app.listen(PORT, () => {
   console.log("Backend draait op http://localhost:" + PORT);
-});
+});import moduleEngineRoutes from "./routes/moduleEngine.js";
+import { startModuleEngine } from "./services/moduleEngine.js";
+
+app.use("/api/module-engine", moduleEngineRoutes);
+
+startModuleEngine();
+
