@@ -1,0 +1,7 @@
+[00:00:00.592] Server  LOG      ✓ Ready in 424ms
+[02:25:30.859] Server  ERROR   Error: ENOENT: no such file or directory, scandir '/Users/bouwproffsnederlandbv/Desktop/AO_MASTER_FULL_DEPLOY/frontend/pages'
+[02:25:30.861] Server  ERROR    ⨯ "unhandledRejection:" Error: ENOENT: no such file or directory, scandir '/Users/bouwproffsnederlandbv/Desktop/AO_MASTER_FULL_DEPLOY/frontend/pages'
+[02:25:30.862] Server  ERROR    ⨯ "unhandledRejection: " Error: ENOENT: no such file or directory, scandir '/Users/bouwproffsnederlandbv/Desktop/AO_MASTER_FULL_DEPLOY/frontend/pages'
+[02:59:26.616] Server  ERROR   Error: ENOENT: no such file or directory, scandir '/Users/bouwproffsnederlandbv/Desktop/AO_MASTER_FULL_DEPLOY/frontend/pages'
+[02:59:26.618] Server  ERROR    ⨯ "unhandledRejection:" Error: ENOENT: no such file or directory, scandir '/Users/bouwproffsnederlandbv/Desktop/AO_MASTER_FULL_DEPLOY/frontend/pages'
+[02:59:26.619] Server  ERROR    ⨯ "unhandledRejection: " Error: ENOENT: no such file or directory, scandir '/Users/bouwproffsnederlandbv/Desktop/AO_MASTER_FULL_DEPLOY/frontend/pages'
