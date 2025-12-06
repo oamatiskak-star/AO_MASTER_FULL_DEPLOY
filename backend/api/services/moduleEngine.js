@@ -1,45 +1,36 @@
 import fs from "fs";
 import path from "path";
-import unzipper from "unzipper";
+import AdmZip from "adm-zip";
 
 const WATCH_DIR = path.resolve("tmp_uploads");
 
-console.log("AO MODULE ENGINE: gestart");
-console.log("Watching:", WATCH_DIR);
+console.log("AO MODULE ENGINE gestart");
+console.log("Watching folder:", WATCH_DIR);
 
-// Zorg dat de map bestaat
 if (!fs.existsSync(WATCH_DIR)) {
-    fs.mkdirSync(WATCH_DIR, { recursive: true });
+  fs.mkdirSync(WATCH_DIR, { recursive: true });
 }
 
-fs.watch(WATCH_DIR, async (eventType, filename) => {
-    if (!filename) return;
+fs.watch(WATCH_DIR, async (event, filename) => {
+  if (!filename) return;
+  if (!filename.endsWith(".zip")) return;
 
-    const fullPath = path.join(WATCH_DIR, filename);
+  const zipPath = path.join(WATCH_DIR, filename);
+  const extractDir = path.join(WATCH_DIR, filename.replace(".zip", ""));
 
-    if (!filename.endsWith(".zip")) return;
+  console.log("ZIP gedetecteerd:", zipPath);
 
-    console.log("Nieuw ZIP bestand gedetecteerd:", filename);
+  try {
+    const zip = new AdmZip(zipPath);
 
-    try {
-        const extractPath = path.join(WATCH_DIR, filename.replace(".zip", ""));
-
-        if (!fs.existsSync(extractPath)) {
-            fs.mkdirSync(extractPath);
-        }
-
-        fs.createReadStream(fullPath)
-            .pipe(unzipper.Extract({ path: extractPath }))
-            .on("close", () => {
-                console.log("ZIP uitgepakt:", extractPath);
-
-                // Later kunnen we dit koppelen aan:
-                // - Supabase upload
-                // - GitHub push
-                // - Vercel trigger
-                // - AI workers starten
-            });
-    } catch (err) {
-        console.error("Fout bij verwerken ZIP:", err);
+    if (!fs.existsSync(extractDir)) {
+      fs.mkdirSync(extractDir);
     }
+
+    zip.extractAllTo(extractDir, true);
+
+    console.log("ZIP uitgepakt naar:", extractDir);
+  } catch (err) {
+    console.error("ZIP extract error:", err);
+  }
 });
