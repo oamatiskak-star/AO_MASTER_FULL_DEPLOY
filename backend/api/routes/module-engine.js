@@ -4,77 +4,47 @@ import path from "path";
 
 const router = express.Router();
 
-// Map voor binnenkomende ZIP modules
-const INCOMING_DIR = path.join(process.cwd(), "backend/modules_incoming");
+const PROCESSED = path.join(process.cwd(), "backend/modules_processed");
+const INDEX_FILE = path.join(PROCESSED, "module_index.json");
 
-// Map waar verwerkte modules komen
-const PROCESSED_DIR = path.join(process.cwd(), "backend/modules_processed");
+// Zorg dat map bestaat
+if (!fs.existsSync(PROCESSED)) fs.mkdirSync(PROCESSED, { recursive: true });
 
-// Zorg dat mappen bestaan
-if (!fs.existsSync(INCOMING_DIR)) fs.mkdirSync(INCOMING_DIR, { recursive: true });
-if (!fs.existsSync(PROCESSED_DIR)) fs.mkdirSync(PROCESSED_DIR, { recursive: true });
-
-// Bestandsindex
-const INDEX_FILE = path.join(PROCESSED_DIR, "module_index.json");
-
-// Helper: laad index
+// Helper: index laden
 function loadIndex() {
   if (!fs.existsSync(INDEX_FILE)) return [];
-  try {
-    return JSON.parse(fs.readFileSync(INDEX_FILE, "utf-8"));
-  } catch {
-    return [];
-  }
+  return JSON.parse(fs.readFileSync(INDEX_FILE, "utf8"));
 }
 
-// Helper: schrijf index
+// Helper: index opslaan
 function saveIndex(list) {
   fs.writeFileSync(INDEX_FILE, JSON.stringify(list, null, 2));
 }
 
-// ------------------------------------------
 // GET /api/module-engine
-// ------------------------------------------
 router.get("/", (req, res) => {
-  const modules = loadIndex();
-  return res.json({ modules });
+  return res.json({ modules: loadIndex() });
 });
 
-// ------------------------------------------
-// POST /api/module-engine/upload
-// ------------------------------------------
-router.post("/upload", async (req, res) => {
-  try {
-    if (!req.files || !req.files.file) {
-      return res.status(400).json({ error: "Geen bestand ontvangen" });
-    }
+// POST /api/module-engine/register
+router.post("/register", (req, res) => {
+  const { filename } = req.body;
 
-    const file = req.files.file;
-    const destPath = path.join(INCOMING_DIR, file.name);
-
-    await file.mv(destPath);
-
-    const index = loadIndex();
-    index.push({
-      name: file.name,
-      size: file.size,
-      uploaded_at: new Date().toISOString()
-    });
-
-    saveIndex(index);
-
-    return res.json({
-      uploaded: true,
-      file: file.name,
-      size: file.size
-    });
-
-  } catch (err) {
-    return res.status(500).json({ error: err.message });
+  if (!filename) {
+    return res.status(400).json({ error: "filename ontbreekt" });
   }
+
+  const entry = {
+    name: filename.replace(".zip", ""),
+    filename,
+    registered_at: new Date().toISOString()
+  };
+
+  const list = loadIndex();
+  list.push(entry);
+  saveIndex(list);
+
+  return res.json({ registered: true, module: entry });
 });
 
-// ------------------------------------------
-// Export
-// ------------------------------------------
 export default router;
