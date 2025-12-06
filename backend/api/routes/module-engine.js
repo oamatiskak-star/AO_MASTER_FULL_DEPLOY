@@ -7,32 +7,28 @@ const router = express.Router();
 const PROCESSED = path.join(process.cwd(), "backend/modules_processed");
 const INDEX_FILE = path.join(PROCESSED, "module_index.json");
 
-// Zorg dat map bestaat
+// ensure folder exists
 if (!fs.existsSync(PROCESSED)) fs.mkdirSync(PROCESSED, { recursive: true });
 
-// Helper: index laden
 function loadIndex() {
   if (!fs.existsSync(INDEX_FILE)) return [];
   return JSON.parse(fs.readFileSync(INDEX_FILE, "utf8"));
 }
 
-// Helper: index opslaan
 function saveIndex(list) {
   fs.writeFileSync(INDEX_FILE, JSON.stringify(list, null, 2));
 }
 
-// GET /api/module-engine
+// lijst modules
 router.get("/", (req, res) => {
-  return res.json({ modules: loadIndex() });
+  res.json({ modules: loadIndex() });
 });
 
-// POST /api/module-engine/register
+// registreer module
 router.post("/register", (req, res) => {
   const { filename } = req.body;
 
-  if (!filename) {
-    return res.status(400).json({ error: "filename ontbreekt" });
-  }
+  if (!filename) return res.status(400).json({ error: "Geen bestandsnaam ontvangen" });
 
   const entry = {
     name: filename.replace(".zip", ""),
@@ -44,7 +40,7 @@ router.post("/register", (req, res) => {
   list.push(entry);
   saveIndex(list);
 
-  return res.json({ registered: true, module: entry });
+  res.json({ registered: true, module: entry });
 });
 
 export default router;
