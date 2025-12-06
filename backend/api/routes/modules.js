@@ -1,37 +1,17 @@
 import express from "express";
-import multer from "multer";
+import fs from "fs";
+import path from "path";
 
 const router = express.Router();
+const uploadFolder = path.join(process.cwd(), "backend/tmp_uploads");
 
-// tijdelijke upload map
-const upload = multer({ dest: "tmp_uploads/" });
-
-// POST voor ZIP upload
-router.post("/", upload.single("file"), (req, res) => {
-  if (!req.file) {
-    return res.status(400).json({ error: "Geen bestand ontvangen" });
-  }
-
-  res.json({
-    status: "upload ok",
-    originalName: req.file.originalname,
-    storedAs: req.file.filename
-  });
-});
-
-// GET test route (optioneel)
 router.get("/", (req, res) => {
+  const processed = fs.readdirSync(uploadFolder).filter(f => f.endsWith(".zip"));
   res.json({
-    status: "modules ok",
-    modules: [
-      "calculaties",
-      "projecten",
-      "uploads",
-      "ai_workers",
-      "vercel_deploy",
-      "github_push"
-    ]
+    status: "ok",
+    processed_modules: processed
   });
 });
 
 export default router;
+
