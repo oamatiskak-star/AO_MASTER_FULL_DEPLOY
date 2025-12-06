@@ -1,70 +1,80 @@
 import express from "express";
 import fs from "fs";
 import path from "path";
-import unzipper from "unzipper";
 
 const router = express.Router();
 
-const ROOT = process.cwd();
-const TMP = path.join(ROOT, "backend/tmp_uploads");
-const INCOMING = path.join(ROOT, "backend/modules_incoming");
-const PROCESSED = path.join(ROOT, "backend/modules_processed");
-const INDEX_FILE = path.join(PROCESSED, "module_index.json");
+// Map voor binnenkomende ZIP modules
+const INCOMING_DIR = path.join(process.cwd(), "backend/modules_incoming");
 
-// Zorg dat alle mappen bestaan
-for (const dir of [TMP, INCOMING, PROCESSED]) {
-  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+// Map waar verwerkte modules komen
+const PROCESSED_DIR = path.join(process.cwd(), "backend/modules_processed");
+
+// Zorg dat mappen bestaan
+if (!fs.existsSync(INCOMING_DIR)) fs.mkdirSync(INCOMING_DIR, { recursive: true });
+if (!fs.existsSync(PROCESSED_DIR)) fs.mkdirSync(PROCESSED_DIR, { recursive: true });
+
+// Bestandsindex
+const INDEX_FILE = path.join(PROCESSED_DIR, "module_index.json");
+
+// Helper: laad index
+function loadIndex() {
+  if (!fs.existsSync(INDEX_FILE)) return [];
+  try {
+    return JSON.parse(fs.readFileSync(INDEX_FILE, "utf-8"));
+  } catch {
+    return [];
+  }
 }
 
-// GET: lijst modules
+// Helper: schrijf index
+function saveIndex(list) {
+  fs.writeFileSync(INDEX_FILE, JSON.stringify(list, null, 2));
+}
+
+// ------------------------------------------
+// GET /api/module-engine
+// ------------------------------------------
 router.get("/", (req, res) => {
-  if (!fs.existsSync(INDEX_FILE)) {
-    return res.json({ modules: [] });
-  }
-  const list = JSON.parse(fs.readFileSync(INDEX_FILE));
-  return res.json({ modules: list });
+  const modules = loadIndex();
+  return res.json({ modules });
 });
 
-// POST: ontvang module ZIP via uploads endpoint → verwerk hem hier
-router.post("/process", async (req, res) => {
+// ------------------------------------------
+// POST /api/module-engine/upload
+// ------------------------------------------
+router.post("/upload", async (req, res) => {
   try {
-    if (!req.body || !req.body.filename) {
-      return res.status(400).json({ error: "filename ontbreekt" });
+    if (!req.files || !req.files.file) {
+      return res.status(400).json({ error: "Geen bestand ontvangen" });
     }
 
-    const uploadedZip = path.join(TMP, req.body.filename);
+    const file = req.files.file;
+    const destPath = path.join(INCOMING_DIR, file.name);
 
-    if (!fs.existsSync(uploadedZip)) {
-      return res.status(404).json({ error: "ZIP niet gevonden in tmp_uploads" });
-    }
+    await file.mv(destPath);
 
-    const extractPath = path.join(INCOMING, req.body.filename.replace(".zip", ""));
+    const index = loadIndex();
+    index.push({
+      name: file.name,
+      size: file.size,
+      uploaded_at: new Date().toISOString()
+    });
 
-    await fs
-      .createReadStream(uploadedZip)
-      .pipe(unzipper.Extract({ path: extractPath }))
-      .promise();
+    saveIndex(index);
 
-    const moduleInfo = {
-      name: req.body.filename.replace(".zip", ""),
-      path: extractPath,
-      installed: new Date().toISOString(),
-    };
+    return res.json({
+      uploaded: true,
+      file: file.name,
+      size: file.size
+    });
 
-    let index = [];
-    if (fs.existsSync(INDEX_FILE)) {
-      index = JSON.parse(fs.readFileSync(INDEX_FILE));
-    }
-
-    index.push(moduleInfo);
-
-    fs.writeFileSync(INDEX_FILE, JSON.stringify(index, null, 2));
-
-    return res.json({ success: true, module: moduleInfo });
   } catch (err) {
-    console.error("MODULE ENGINE ERROR", err);
     return res.status(500).json({ error: err.message });
   }
 });
 
+// ------------------------------------------
+// Export
+// ------------------------------------------
 export default router;
