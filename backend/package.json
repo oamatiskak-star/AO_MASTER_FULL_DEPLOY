@@ -10,5 +10,8 @@
   },
   "scripts": {
     "dev": "node backend/api/server.js"
+"scripts": {
+  "start": "node api/server.js"
+}
   }
 }
