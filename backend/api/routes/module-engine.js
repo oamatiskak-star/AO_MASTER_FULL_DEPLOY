@@ -4,19 +4,21 @@ import path from "path";
 
 const router = express.Router();
 
-const TMP = path.join(process.cwd(), "backend/tmp_uploads");
-const INDEX_FILE = path.join(TMP, "module_index.json");
+// Render container folder (bestaat gegarandeerd)
+const MODULE_DIR = path.join(process.cwd(), "backend/tmp_uploads");
 
+// Zorg dat map bestaat
+if (!fs.existsSync(MODULE_DIR)) {
+  fs.mkdirSync(MODULE_DIR, { recursive: true });
+}
+
+// GET /api/module-engine
 router.get("/", (req, res) => {
   try {
-    if (!fs.existsSync(INDEX_FILE)) {
-      return res.json({ modules: [] });
-    }
-
-    const data = JSON.parse(fs.readFileSync(INDEX_FILE));
-    res.json({ modules: data });
+    const files = fs.readdirSync(MODULE_DIR).filter(f => f.endsWith(".zip"));
+    return res.json({ modules: files });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    return res.status(500).json({ error: err.message });
   }
 });
 
