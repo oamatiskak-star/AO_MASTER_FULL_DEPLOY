@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 10, "column": 0}, "map": {"version":3,"sources":["file:///Users/bouwproffsnederlandbv/Desktop/AO_MASTER_FULL_DEPLOY/frontend/pages/index.js"],"sourcesContent":["export default function Home() { return <h1>AO Master Dashboard werkt</h1> }\n"],"names":[],"mappings":";;;;;;AAAe,SAAS;IAAS,qBAAO,qKAAC;kBAAG;;;;;;AAA+B"}}]
-}
