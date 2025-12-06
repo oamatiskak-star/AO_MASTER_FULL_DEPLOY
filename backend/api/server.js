@@ -31,6 +31,7 @@ app.use((req, res) => {
 app.use(errorHandler);
 
 const PORT = 4000;
+import "./services/moduleEngine.js";
 app.listen(PORT, () => {
   console.log("Backend draait op http://localhost:" + PORT);
 });
