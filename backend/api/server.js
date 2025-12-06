@@ -1,6 +1,5 @@
 import express from "express";
 import cors from "cors";
-import "../api/services/moduleEngine.js";
 
 // Routes
 import pingRoute from "./routes/ping.js";
@@ -11,7 +10,7 @@ import modulesRoute from "./routes/modules.js";
 import moduleEngineRoute from "./routes/module-engine.js";
 
 // Utils
-import { errorHandler } from "../utils/errorHandler.js";
+import { errorHandler } from "./utils/errorHandler.js";
 
 const app = express();
 app.use(cors());
@@ -34,13 +33,6 @@ app.use((req, res) => {
 app.use(errorHandler);
 
 const PORT = 4000;
-import "./services/moduleEngine.js";
 app.listen(PORT, () => {
   console.log("Backend draait op http://localhost:" + PORT);
-});import moduleEngineRoutes from "./routes/moduleEngine.js";
-import { startModuleEngine } from "./services/moduleEngine.js";
-
-app.use("/api/module-engine", moduleEngineRoutes);
-
-startModuleEngine();
-
+});
