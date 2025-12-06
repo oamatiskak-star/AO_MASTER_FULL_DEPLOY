@@ -1,5 +1,6 @@
-export function errorHandler(err, req, res, next) {
-  console.error("SERVER ERROR:", err);
-  res.status(500).json({ error: err.message || "Interne serverfout" });
-}
+import { logError } from "./logger.js";
 
+export function errorHandler(err, req, res, next) {
+  logError(err.message);
+  res.status(500).json({ error: err.message });
+}
