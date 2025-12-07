@@ -1,25 +1,55 @@
 import express from "express";
 import fs from "fs";
 import path from "path";
+import multer from "multer";
 
 const router = express.Router();
 
-// Render container folder (bestaat gegarandeerd)
-const MODULE_DIR = path.join(process.cwd(), "backend/tmp_uploads");
+const INCOMING = path.join(process.cwd(), "backend/modules_incoming");
+const PROCESSED = path.join(process.cwd(), "backend/modules_processed");
+const INDEX_FILE = path.join(PROCESSED, "module_index.json");
 
-// Zorg dat map bestaat
-if (!fs.existsSync(MODULE_DIR)) {
-  fs.mkdirSync(MODULE_DIR, { recursive: true });
+if (!fs.existsSync(INCOMING)) fs.mkdirSync(INCOMING);
+if (!fs.existsSync(PROCESSED)) fs.mkdirSync(PROCESSED);
+
+const upload = multer({ dest: INCOMING });
+
+router.post("/", upload.single("file"), (req, res) => {
+try {
+if (!req.file) return res.status(400).json({ error: "geen bestand" });
+
+const newName = req.file.originalname;
+const finalIncoming = path.join(INCOMING, newName);
+fs.renameSync(req.file.path, finalIncoming);
+
+const finalProcessed = path.join(PROCESSED, newName);
+fs.copyFileSync(finalIncoming, finalProcessed);
+
+let index = [];
+if (fs.existsSync(INDEX_FILE)) {
+  index = JSON.parse(fs.readFileSync(INDEX_FILE));
 }
 
-// GET /api/module-engine
+index.push(newName);
+fs.writeFileSync(INDEX_FILE, JSON.stringify(index, null, 2));
+
+res.json({
+  uploaded: true,
+  incoming: newName,
+  processed: newName
+});
+
+
+} catch (err) {
+res.status(500).json({ error: err.message });
+}
+});
+
 router.get("/", (req, res) => {
-  try {
-    const files = fs.readdirSync(MODULE_DIR).filter(f => f.endsWith(".zip"));
-    return res.json({ modules: files });
-  } catch (err) {
-    return res.status(500).json({ error: err.message });
-  }
+if (!fs.existsSync(INDEX_FILE)) return res.json({ modules: [] });
+
+const list = JSON.parse(fs.readFileSync(INDEX_FILE));
+res.json({ modules: list });
 });
 
 export default router;

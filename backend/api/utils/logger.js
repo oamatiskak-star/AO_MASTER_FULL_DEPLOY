@@ -1,3 +1,6 @@
-export function log(message) {
-  console.log(`[AO-LOG] ${message}`);
-}
+const logger = {
+log: (...args) => console.log("[LOG]", ...args),
+error: (...args) => console.error("[ERROR]", ...args)
+};
+
+export default logger;

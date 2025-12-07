@@ -1,0 +1,346 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.2">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; -webkit-text-stroke: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; -webkit-text-stroke: #000000; min-height: 14.0px}
+    span.s1 {font-kerning: none}
+  </style>
+</head>
+<body>
+<p class="p1"><span class="s1">&lt;!DOCTYPE html&gt;</span></p>
+<p class="p1"><span class="s1">&lt;html lang="nl"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;head&gt;</span></p>
+<p class="p1"><span class="s1">&lt;meta charset="UTF-8" /&gt;</span></p>
+<p class="p1"><span class="s1">&lt;title&gt;AO MASTER DASHBOARD&lt;/title&gt;</span></p>
+<p class="p1"><span class="s1">&lt;meta name="viewport" content="width=device-width, initial-scale=1" /&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;style&gt;</span></p>
+<p class="p1"><span class="s1">body {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>margin: 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>padding: 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>font-family: Arial, sans-serif;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>background: #111;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>color: white;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>display: flex;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>height: 100vh;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">/* Sidebar */</span></p>
+<p class="p1"><span class="s1">#sidebar {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>width: 260px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>background: #181818;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>padding: 20px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>box-shadow: 0 0 8px rgba(0,0,0,0.4);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>overflow-y: auto;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">#sidebar h2 {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>margin-top: 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>font-size: 22px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>margin-bottom: 20px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>color: #4caf50;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">#sidebar section {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>margin-bottom: 25px;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">#sidebar button {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>width: 100%;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>padding: 12px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>margin-bottom: 8px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>background: #222;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>border: 1px solid #333;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>color: white;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>cursor: pointer;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>text-align: left;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>border-radius: 4px;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">#sidebar button:hover {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>background: #333;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">/* Content */</span></p>
+<p class="p1"><span class="s1">#content {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>flex: 1;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>padding: 20px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>overflow: auto;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">.panel {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>background: #1e1e1e;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>padding: 20px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>border-radius: 10px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>margin-bottom: 20px;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">.panel h3 {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>margin-top: 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>color: #4caf50;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">pre {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>background: #000;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>padding: 15px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>border-radius: 8px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>color: #4caf50;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>max-height: 500px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>overflow: auto;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>border: 1px solid #333;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">.input-block {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>margin-bottom: 15px;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">.input-block label {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>display: block;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>margin-bottom: 5px;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">.input-block input, .input-block textarea {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>width: 100%;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>padding: 10px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>background: #222;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>border: 1px solid #333;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>color: white;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>border-radius: 5px;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">.action-btn {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>padding: 12px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>background: #4caf50;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>border: none;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>cursor: pointer;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>color: white;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>border-radius: 5px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>margin-top: 10px;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">.action-btn:hover {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>background: #43a047;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">&lt;/style&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/head&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;body&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div id="sidebar"&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;h2&gt;AO Dashboard&lt;/h2&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;section&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;h3&gt;Systeem&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;button onclick="loadPanel('system_status')"&gt;Backend Status&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;button onclick="loadPanel('modules_list')"&gt;Modules&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;button onclick="loadPanel('module_engine')"&gt;Module Engine&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/section&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;section&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;h3&gt;Modules&lt;/h3&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;button onclick="loadPanel('calculation')"&gt;Calculation&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;button onclick="loadPanel('projects')"&gt;Projects&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;button onclick="loadPanel('uploads')"&gt;Uploads&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;button onclick="loadPanel('ai_workers')"&gt;AI Workers&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;button onclick="loadPanel('vercel_deploy')"&gt;Vercel Deploy&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;button onclick="loadPanel('github_sync')"&gt;Github Sync&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;button onclick="loadPanel('architect_tools')"&gt;Architect Tools&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;button onclick="loadPanel('drawing_tools')"&gt;Drawing Tools&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;button onclick="loadPanel('stabu_parser')"&gt;STABU Parser&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;button onclick="loadPanel('project_planning')"&gt;Project Planning&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;button onclick="loadPanel('execution_engine')"&gt;Execution Engine&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;button onclick="loadPanel('procurement_sync')"&gt;Procurement Sync&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;button onclick="loadPanel('invoices_sorting')"&gt;Invoices Sorting&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;button onclick="loadPanel('bookkeeping_bridge')"&gt;Bookkeeping Bridge&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;button onclick="loadPanel('supabase_connector')"&gt;Supabase Connector&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;button onclick="loadPanel('notifications')"&gt;Notifications&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;button onclick="loadPanel('ai_designer')"&gt;AI Designer&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;button onclick="loadPanel('blueprint_reader')"&gt;Blueprint Reader&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;button onclick="loadPanel('pdf_to_bim')"&gt;PDF to BIM&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;button onclick="loadPanel('dashboard_engine')"&gt;Dashboard Engine&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/section&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;div id="content"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;div id="panelArea" class="panel"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;h3&gt;Welkom Orlando&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;p&gt;Selecteer een module links om te beginnen.&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;script&gt;</span></p>
+<p class="p1"><span class="s1">const API = "https://ao-master-full-deploy.onrender.com/api";</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">/* PANEL LOADER */</span></p>
+<p class="p1"><span class="s1">function loadPanel(id) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>const panel = document.getElementById("panelArea");</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>const panels = {</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>system_status: `</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;h3&gt;Backend Status&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;button class="action-btn" onclick="apiTest()"&gt;Check Backend&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;pre id='result'&gt;&lt;/pre&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>`,</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>modules_list: `</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;h3&gt;Alle Modules&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;button class="action-btn" onclick="loadModules()"&gt;Laden&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;pre id='result'&gt;&lt;/pre&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>`,</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>module_engine: `</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;h3&gt;Module Engine&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;button class="action-btn" onclick="loadEngine()"&gt;Engine Status&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;pre id='result'&gt;&lt;/pre&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>`,</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>/* --- FUNCTIONELE MODULE SCHERMEN --- */</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>calculation: `</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;h3&gt;Calculation Module&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div class="input-block"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;label&gt;Upload PDF tekeningen&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;input type="file" id="calcFile"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;button class="action-btn"&gt;Start Calculatie&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>`,</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>projects: `</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;h3&gt;Projectbeheer&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div class='input-block'&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;label&gt;Projectnaam&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;input id='projName'&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;button class='action-btn'&gt;Nieuw Project Aanmaken&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>`,</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>uploads: `</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;h3&gt;Uploads&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;input type="file"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;button class="action-btn"&gt;Upload&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>`,</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>ai_workers: `</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;h3&gt;AI Workers&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;p&gt;Automatische AI processen beheren.&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;button class="action-btn"&gt;Start Worker&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>`,</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>vercel_deploy: `</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;h3&gt;Vercel Deploy&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;button class="action-btn"&gt;Deploy Frontend&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>`,</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>github_sync: `</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;h3&gt;Github Sync&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;button class="action-btn"&gt;Push naar Repo&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>`,</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>architect_tools: `</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;h3&gt;Architect Tools&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;button class="action-btn"&gt;Open Ontwerp Module&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>`,</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>drawing_tools: `</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;h3&gt;Drawing Tools&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;button class="action-btn"&gt;Start CAD Reader&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>`,</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>stabu_parser: `</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;h3&gt;STABU Parser&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;textarea rows="6"&gt;Plak STABU regels hier...&lt;/textarea&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;button class="action-btn"&gt;Parse&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>`,</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>project_planning: `</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;h3&gt;Project Planning&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;button class="action-btn"&gt;Genereer Planning&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>`,</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>execution_engine: `</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;h3&gt;Execution Engine&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;button class="action-btn"&gt;Start Workflow&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>`,</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>procurement_sync: `</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;h3&gt;Procurement Sync&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;button class="action-btn"&gt;Inkoop synchroniseren&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>`,</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>invoices_sorting: `</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;h3&gt;Invoices Sorting&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;button class="action-btn"&gt;Start Automatische Sortering&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>`,</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>bookkeeping_bridge: `</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;h3&gt;Boekhouding Bridge&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;button class="action-btn"&gt;Sync met Moneybird&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>`,</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>supabase_connector: `</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;h3&gt;Supabase Connector&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;button class="action-btn"&gt;Test Database Connectie&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>`,</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>notifications: `</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;h3&gt;Notificaties&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;button class="action-btn"&gt;Stuur Test Notificatie&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>`,</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>ai_designer: `</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;h3&gt;AI Designer&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;textarea rows="4"&gt;Omschrijf ontwerp...&lt;/textarea&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;button class="action-btn"&gt;Genereer Ontwerp&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>`,</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>blueprint_reader: `</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;h3&gt;Blueprint Reader&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;input type="file"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;button class="action-btn"&gt;Analyseer Blueprint&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>`,</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>pdf_to_bim: `</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;h3&gt;PDF → BIM Converter&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;input type="file"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;button class="action-btn"&gt;Converteren&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>`,</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>dashboard_engine: `</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;h3&gt;Dashboard Engine&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;button class="action-btn"&gt;Herstart Engine&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>`</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>};</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>panel.innerHTML = panels[id] || "&lt;h3&gt;Module niet gevonden&lt;/h3&gt;";</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">/* ACTIES */</span></p>
+<p class="p1"><span class="s1">async function apiTest() {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>const r = await fetch(`${API}/ping`);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>document.getElementById("result").textContent = JSON.stringify(await r.json(), null, 2);</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">async function loadModules() {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>const r = await fetch(`${API}/modules`);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>document.getElementById("result").textContent = JSON.stringify(await r.json(), null, 2);</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">async function loadEngine() {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>const r = await fetch(`${API}/module-engine`);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>document.getElementById("result").textContent = JSON.stringify(await r.json(), null, 2);</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">&lt;/script&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;/body&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/html&gt;</span></p>
+</body>
+</html>

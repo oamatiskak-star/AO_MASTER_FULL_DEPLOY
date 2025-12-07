@@ -1,8 +1,8 @@
 import express from "express";
 const router = express.Router();
 
-router.post("/", (req, res) => {
-res.json({ ok: true, calc: "module online" });
+router.post("/design", (req, res) => {
+res.json({ design: "created" });
 });
 
 export default router;

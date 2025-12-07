@@ -1,38 +1,19 @@
+import * as dotenv from "dotenv";
+dotenv.config({ path: "./.env" });
+
 import express from "express";
-import cors from "cors";
-
-// ROUTES
-import pingRoute from "./routes/ping.js";
-import modulesRoute from "./routes/modules.js";
-import uploadsRoute from "./routes/uploads.js";
-import moduleEngineRoute from "./routes/module-engine.js";
-import calcRoute from "./routes/calc.js";
-import projectsRoute from "./routes/projects.js";
-
-// UTILS
-import { errorHandler } from "./utils/errorHandler.js";
+import projectsRouter from "./routes/projects.js";
+import pingRouter from "./routes/ping.js";
 
 const app = express();
-app.use(cors());
 app.use(express.json());
 
-// API ROUTES
-app.use("/api/ping", pingRoute);
-app.use("/api/modules", modulesRoute);
-app.use("/api/uploads", uploadsRoute);
-app.use("/api/module-engine", moduleEngineRoute);
-app.use("/api/calc", calcRoute);
-app.use("/api/projects", projectsRoute);
+// ROUTES
+app.use("/api/projects", projectsRouter);
+app.use("/api/ping", pingRouter);
 
-// 404 fallback
-app.use((req, res) => {
-  res.status(404).json({ error: "Route niet gevonden" });
-});
-
-// Error handler
-app.use(errorHandler);
-
+// START SERVER
 const PORT = 4000;
 app.listen(PORT, () => {
-  console.log(`Backend draait op http://localhost:${PORT}`);
+  console.log("Backend draait op http://localhost:" + PORT);
 });
